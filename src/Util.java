@@ -1,29 +1,22 @@
 import java.awt.Image;
-import javax.imageio.ImageIO;
-import java.io.File;
-import java.io.IOException;
+import java.awt.Toolkit;
 import java.util.HashMap;
 
 public class Util{
 	private static HashMap<String, Image> cache= new HashMap<String, Image>();
 
-	java.awt.Toolkit toolkit= java.awt.Toolkit.getDefaultToolkit();
-
-	public static Image loadImage( String path ){
+	public static Image loadImage( Class c, String path ){
 		Image image= null;
 
 		if( cache.containsKey( path ) ){
 			return cache.get( path );
 		}
 
-		try{
-			image= ImageIO.read( new File( path ) );
+		Toolkit toolkit= Toolkit.getDefaultToolkit();
+		image= toolkit.getImage( c.getResource( path ) );
 
-			if( ! cache.containsKey( path ) ){
-				cache.put( path, image );
-			}
-		}catch( IOException e ){
-			e.printStackTrace();
+		if( ! cache.containsKey( path ) ){
+			cache.put( path, image );
 		}
 
 		return image;

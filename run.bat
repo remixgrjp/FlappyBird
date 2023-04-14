@@ -1,5 +1,4 @@
-#!/bin/bash
 javac src/*.java -d out
 jar cvfm out/FlappyBird.jar manifest.txt lib -C out .
 java -jar out/FlappyBird.jar
-rm -rf out
+RMDIR /S /Q out
