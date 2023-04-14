@@ -19,6 +19,7 @@ public class Game{
 	public Boolean started;
 
 	public Game(){
+		Util.classBase= this.getClass();
 		keyboard= Keyboard.getInstance();
 		restart();
 	}

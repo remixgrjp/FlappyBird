@@ -14,6 +14,6 @@ public class Render{
 		Toolkit.getDefaultToolkit().sync();
 		this.x= x;
 		this.y= y;
-		this.image= Util.loadImage( this.getClass(), imagePath );
+		this.image= Util.loadImage( imagePath );
 	}
 }

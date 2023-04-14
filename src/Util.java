@@ -3,18 +3,18 @@ import java.awt.Toolkit;
 import java.util.HashMap;
 
 public class Util{
+	static Class classBase;
+	static Toolkit toolkit= Toolkit.getDefaultToolkit();
 	private static HashMap<String, Image> cache= new HashMap<String, Image>();
 
-	public static Image loadImage( Class c, String path ){
+	public static Image loadImage( String path ){
 		Image image= null;
 
 		if( cache.containsKey( path ) ){
 			return cache.get( path );
 		}
 
-		Toolkit toolkit= Toolkit.getDefaultToolkit();
-		image= toolkit.getImage( c.getResource( path ) );
-
+		image= toolkit.getImage( classBase.getResource( path ) );
 		if( ! cache.containsKey( path ) ){
 			cache.put( path, image );
 		}
