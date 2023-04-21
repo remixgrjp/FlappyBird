@@ -41,7 +41,7 @@ public class Game{
 	public void update(){
 		watchForStart();
 
-		if( !started ) return;
+		if( ! started ) return;
 
 		watchForPause();
 		watchForReset();
@@ -102,8 +102,8 @@ public class Game{
 			Pipe southPipe= null;
 
 			// Look for pipes off the screen
-			for (Pipe pipe : pipes) {
-				if (pipe.x - pipe.width < 0) {
+			for( Pipe pipe : pipes ){
+				if( pipe.x - pipe.width < 0 ){
 					if( northPipe == null ){
 						northPipe= pipe;
 					}else if( southPipe == null ){

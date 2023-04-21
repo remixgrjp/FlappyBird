@@ -39,7 +39,7 @@ public class Bird{
 		if( jumpDelay > 0 )
 			jumpDelay--;
 
-		if( !dead && keyboard.isDown(KeyEvent.VK_SPACE) && jumpDelay <= 0 ){
+		if( ! dead && keyboard.isDown(KeyEvent.VK_SPACE) && jumpDelay <= 0 ){
 			yvel= -10;
 			jumpDelay= 10;
 		}
@@ -64,9 +64,9 @@ public class Bird{
 			rotation= Math.PI / 2;
 
 		r.transform= new AffineTransform();
-		r.transform.translate(x + width / 2, y + height / 2);
-		r.transform.rotate(rotation);
-		r.transform.translate(-width / 2, -height / 2);
+		r.transform.translate( x + width / 2, y + height / 2 );
+		r.transform.rotate( rotation );
+		r.transform.translate( -width / 2, -height / 2 );
 
 		return r;
 	}

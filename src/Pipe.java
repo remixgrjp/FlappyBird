@@ -33,10 +33,10 @@ public class Pipe{
 	public boolean collides( int _x, int _y, int _width, int _height ){
 		int margin= 2;
 
-		if(_x + _width - margin > x && _x + margin < x + width ){
-			if( orientation.equals("south") && _y < y + height ){
+		if( _x + _width - margin > x && _x + margin < x + width ){
+			if(       orientation.equals( "south" ) && _y < y + height ){
 				return true;
-			}else if( orientation.equals("north") && _y + _height > y ){
+			}else if( orientation.equals( "north" ) && _y +_height > y ){
 				return true;
 			}
 		}

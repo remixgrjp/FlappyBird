@@ -8,7 +8,7 @@ public class GamePanel extends JPanel implements Runnable{
 
 	public GamePanel(){
 		game= new Game();
-		new Thread(this).start();
+		new Thread( this ).start();
 	}
 
 	public void update(){
@@ -33,7 +33,7 @@ public class GamePanel extends JPanel implements Runnable{
 			g2D.drawString( "Press SPACE to start", 150, 240 );
 		}else{
 			g2D.setFont(new Font( "TimesRoman", Font.PLAIN, 24 ) );
-			g2D.drawString( Integer.toString(game.score), 10, 465 );
+			g2D.drawString( Integer.toString( game.score ), 10, 465 );
 		}
 
 		if( game.gameover ){
