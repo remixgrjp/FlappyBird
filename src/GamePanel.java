@@ -35,6 +35,7 @@ public class GamePanel extends JPanel implements Runnable{
 			g2D.setFont(new Font( "TimesRoman", Font.PLAIN, 24 ) );
 			g2D.drawString( Integer.toString( game.score ), 10, 465 );
 		}
+		g2D.drawString( String.format( "x:%+d, y:%+d, yvel:%+3.1f", game.getBirdX(), game.getBirdY(), game.getBirdV() ), 150, 465 );//bird position
 
 		if( game.gameover ){
 			g2D.setFont(new Font( "TimesRoman", Font.PLAIN, 20 ) );

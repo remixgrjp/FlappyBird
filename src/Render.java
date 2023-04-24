@@ -11,7 +11,7 @@ public class Render{
 	public Render(){}
 
 	public Render( int x, int y, String imagePath ){
-		Toolkit.getDefaultToolkit().sync();
+		Toolkit.getDefaultToolkit().sync();//maybe need Linux window manager
 		this.x= x;
 		this.y= y;
 		this.image= Util.loadImage( imagePath );

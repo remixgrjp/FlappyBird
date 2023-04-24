@@ -1,8 +1,8 @@
 import java.awt.Image;
 
 public class Pipe{
-	public int x;
-	public int y;
+	public int x;//left
+	public int y;//top
 	public int width;
 	public int height;
 	public int speed= 3;

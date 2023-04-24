@@ -8,7 +8,7 @@ public class App{
 		JFrame frame= new JFrame();
 		frame.setVisible( true );
 		frame.setDefaultCloseOperation( JFrame.EXIT_ON_CLOSE );
-		frame.setLocationRelativeTo( null );
+		frame.setLocationRelativeTo( null );//center
 
 		Keyboard keyboard= Keyboard.getInstance();
 		frame.addKeyListener( keyboard );

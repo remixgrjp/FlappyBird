@@ -11,6 +11,9 @@ public class Game{
 	private int pipeDelay;
 
 	private Bird bird;
+	int getBirdX(){ return bird.x; };//for indicate
+	int getBirdY(){ return bird.y; };//for indicate
+	double getBirdV(){ return bird.yvel; };//for indicate
 	private ArrayList<Pipe> pipes;
 	private Keyboard keyboard;
 
@@ -49,7 +52,7 @@ public class Game{
 		if( paused ) return;
 
 		bird.update();
-
+		checkForLimit();
 		if( gameover ) return;
 
 		movePipes();
@@ -103,12 +106,12 @@ public class Game{
 
 			// Look for pipes off the screen
 			for( Pipe pipe : pipes ){
-				if( pipe.x - pipe.width < 0 ){
+				if( pipe.x - pipe.width < 0 ){//pipe out of left
 					if( northPipe == null ){
 						northPipe= pipe;
 					}else if( southPipe == null ){
 						southPipe= pipe;
-						break;
+						break;//pipe must pair
 					}
 				}
 			}
@@ -129,7 +132,7 @@ public class Game{
 				southPipe.reset();
 			}
 
-			northPipe.y= southPipe.y + southPipe.height + 175;
+			northPipe.y= southPipe.y + southPipe.height + 175;//constant space pair
 		}
 
 		for( Pipe pipe : pipes ){
@@ -146,11 +149,15 @@ public class Game{
 				score++;
 			}
 		}
+	}
 
-		// Ground + Bird collision
+	private void checkForLimit(){
 		if( bird.y + bird.height > App.HEIGHT - 80 ){
 			gameover= true;
-			bird.y= App.HEIGHT - 80 - bird.height;
+			if( 0 >= bird.yvel )
+				bird.flapping= true;
+			else
+				bird.flapping= false;
 		}
 	}
 }
