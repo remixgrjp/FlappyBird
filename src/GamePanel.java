@@ -16,6 +16,10 @@ public class GamePanel extends Panel implements Runnable{
 	}
 
 	public void update( Graphics g ){
+		paint( g );
+	}
+
+	public void paint( Graphics g ){
 		Image imageOff= createImage( getWidth(), getHeight() );
 		Graphics gOff= imageOff.getGraphics();
 
