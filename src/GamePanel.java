@@ -4,6 +4,8 @@ import java.awt.geom.*;
 
 public class GamePanel extends Panel implements Runnable{
 	private Game game;
+	Image imageOff= null;
+	Graphics gOff= null;
 
 	public GamePanel(){
 		game= new Game();
@@ -12,16 +14,8 @@ public class GamePanel extends Panel implements Runnable{
 
 	public void update(){
 		game.update();
-		repaint();
-	}
 
-	public void update( Graphics g ){
-		paint( g );
-	}
-
-	public void paint( Graphics g ){
-		Image imageOff= createImage( getWidth(), getHeight() );
-		Graphics gOff= imageOff.getGraphics();
+		if( null == imageOff ) return;
 
 		Graphics2D g2D= (Graphics2D)gOff;
 		for( Render r : game.getRenders() )
@@ -45,8 +39,21 @@ public class GamePanel extends Panel implements Runnable{
 			g2D.setFont(new Font( "TimesRoman", Font.PLAIN, 20 ) );
 			g2D.drawString( "Press R to restart", 150, 240 );
 		}
+		gOff.drawImage( imageOff, 0, 0, this );
+
+		repaint();
+	}
+
+	public void update( Graphics g ){
+		paint( g );
+	}
+
+	public void paint( Graphics g ){
+		if( null == imageOff ){
+			imageOff= createImage( getSize().width, getSize().height );//not call at constructor
+			gOff= imageOff.getGraphics();
+		}
 		g.drawImage( imageOff, 0, 0, this );
-		gOff.dispose();
 	}
 
 	public void run(){
