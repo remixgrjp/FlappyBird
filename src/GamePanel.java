@@ -8,6 +8,7 @@ public class GamePanel extends Panel implements Runnable{
 	Graphics gOff= null;
 
 	public GamePanel(){
+		addKeyListener( Keyboard.getInstance() );
 		game= new Game();
 		new Thread( this ).start();
 	}
