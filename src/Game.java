@@ -106,7 +106,7 @@ public class Game{
 
 			// Look for pipes off the screen
 			for( Pipe pipe : pipes ){
-				if( pipe.x - pipe.width < 0 ){//pipe out of left
+				if( pipe.x - pipe.width < 0 ){//out of left
 					if( northPipe == null ){
 						northPipe= pipe;
 					}else if( southPipe == null ){
@@ -145,7 +145,7 @@ public class Game{
 			if( pipe.collides( bird.x, bird.y, bird.width, bird.height ) ){
 				gameover= true;
 				bird.dead= true;
-			}else if( pipe.x == bird.x && pipe.orientation.equalsIgnoreCase( "south" ) ){
+			}else if( (bird.x > pipe.x + pipe.width) && (bird.x <= pipe.x + pipe.width + pipe.speed)  && pipe.orientation.equalsIgnoreCase( "south" ) ){
 				score++;
 			}
 		}
