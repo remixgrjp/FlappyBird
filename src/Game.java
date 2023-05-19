@@ -62,8 +62,8 @@ public class Game{
 	public ArrayList<Render> getRenders(){
 		ArrayList<Render> renders= new ArrayList<Render>();
 		renders.add( new Render( 0, 0, "lib/background.png" ) );
-		for( Pipe pipe : pipes )
-			renders.add( pipe.getRender() );
+		for( Pipe p: pipes )
+			renders.add( p.getRender() );
 		renders.add( new Render( 0, 0, "lib/foreground.png" ) );
 		renders.add( bird.getRender() );
 		return renders;
@@ -101,51 +101,37 @@ public class Game{
 
 		if( pipeDelay < 0 ){
 			pipeDelay= PIPE_DELAY;
-			Pipe northPipe= null;
-			Pipe southPipe= null;
+			Pipe pipe= null;
 
 			// Look for pipes off the screen
-			for( Pipe pipe : pipes ){
-				if( pipe.x - pipe.width < 0 ){//out of left
-					if( northPipe == null ){
-						northPipe= pipe;
-					}else if( southPipe == null ){
-						southPipe= pipe;
-						break;//pipe must pair
+			for( Pipe p: pipes ){
+				if( p.x - p.width < 0 ){//out of left
+					if( pipe == null ){
+						pipe= p;
 					}
 				}
 			}
 
-			if( northPipe == null ){
-				Pipe pipe= new Pipe( "north" );
-				pipes.add( pipe );
-				northPipe= pipe;
+			if( pipe == null ){
+				Pipe p= new Pipe();
+				pipes.add( p );
+				pipe= p;
 			}else{
-				northPipe.reset();
+				pipe.reset();
 			}
-
-			if( southPipe == null ){
-				Pipe pipe= new Pipe( "south" );
-				pipes.add( pipe );
-				southPipe= pipe;
-			}else{
-				southPipe.reset();
-			}
-
-			northPipe.y= southPipe.y + southPipe.height + 175;//constant space pair
 		}
 
-		for( Pipe pipe : pipes ){
-			pipe.update();
+		for( Pipe p: pipes ){
+			p.update();
 		}
 	}
 
 	private void checkForCollisions(){
-		for( Pipe pipe : pipes ){
-			if( pipe.collides( bird.x, bird.y, bird.width, bird.height ) ){
+		for( Pipe p: pipes ){
+			if( p.collides( bird.x, bird.y, bird.width, bird.height ) ){
 				gameover= true;
 				bird.dead= true;
-			}else if( (bird.x > pipe.x + pipe.width) && (bird.x <= pipe.x + pipe.width + pipe.speed)  && pipe.orientation.equalsIgnoreCase( "south" ) ){
+			}else if( (bird.x > p.x + p.width) && (bird.x <= p.x + p.width + p.speed) ){
 				score++;
 			}
 		}

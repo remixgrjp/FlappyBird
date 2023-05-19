@@ -7,12 +7,9 @@ public class Pipe{
 	public int height;
 	public int speed= 3;
 
-	public String orientation;
-
 	private Image image;
 
-	public Pipe( String orientation ){
-		this.orientation= orientation;
+	public Pipe(){
 		reset();
 	}
 
@@ -20,10 +17,7 @@ public class Pipe{
 		width= 66;
 		height= 400;
 		x= App.WIDTH;
-
-		if( orientation.equals( "south" ) ){
-			y= -(int)(Math.random() * 120) - height / 2;
-		}
+		y= height / 2 + 175 -(int)(Math.random() * 120);//175:constant space pair
 	}
 
 	public void update(){
@@ -34,9 +28,7 @@ public class Pipe{
 		int margin= 2;
 
 		if( _x + _width - margin > x && _x + margin < x + width ){
-			if(       orientation.equals( "south" ) && _y < y + height ){
-				return true;
-			}else if( orientation.equals( "north" ) && _y +_height > y ){
+			if( _y +_height > y ){
 				return true;
 			}
 		}
@@ -50,7 +42,7 @@ public class Pipe{
 		r.y= y;
 
 		if( image == null ){
-			image= Util.loadImage( "lib/pipe-" + orientation + ".png" );
+			image= Util.loadImage( "lib/pipe.png" );
 		}
 		r.image= image;
 
