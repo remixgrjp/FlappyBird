@@ -62,8 +62,10 @@ public class Game{
 	public ArrayList<Render> getRenders(){
 		ArrayList<Render> renders= new ArrayList<Render>();
 		renders.add( new Render( 0, 0, "lib/background.png" ) );
-		for( Pipe p: pipes )
+		for( Pipe p: pipes ){
 			renders.add( p.getRender() );
+			renders.add( p.getRender2() );
+		}
 		renders.add( new Render( 0, 0, "lib/foreground.png" ) );
 		renders.add( bird.getRender() );
 		return renders;

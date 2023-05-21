@@ -1,10 +1,10 @@
 import java.awt.Image;
-import java.awt.Toolkit;
+import javax.imageio.ImageIO;
+import java.io.IOException;
 import java.util.HashMap;
 
 public class Util{
 	static Class classBase;
-	static Toolkit toolkit= Toolkit.getDefaultToolkit();
 	private static HashMap<String, Image> cache= new HashMap<String, Image>();
 
 	public static Image loadImage( String path ){
@@ -14,9 +14,13 @@ public class Util{
 			return cache.get( path );
 		}
 
-		image= toolkit.getImage( classBase.getResource( path ) );
-		if( ! cache.containsKey( path ) ){
-			cache.put( path, image );
+		try{
+			image= ImageIO.read( classBase.getResourceAsStream( path ) );
+			if( ! cache.containsKey( path ) ){
+				cache.put( path, image );
+			}
+		}catch( IOException e ){
+			e.printStackTrace();
 		}
 
 		return image;
