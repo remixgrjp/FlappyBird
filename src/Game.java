@@ -41,7 +41,14 @@ public class Game{
 		pipes= new ArrayList<Pipe>();
 	}
 
+//int i1= -1; int i2= -1; int i3= -1;
 	public void update(){
+//if( i1==pauseDelay && i2==restartDelay && i3==pipeDelay ){
+//	System.out.print( "." );
+//}else{
+//	System.out.print( String.format( "\nscore:%02d,pause:%04d,restart%04d,pipe%04d", score, pauseDelay, restartDelay, pipeDelay ) );
+//	i1= pauseDelay; i2= restartDelay; i3= pipeDelay;
+//}
 		watchForStart();
 
 		if( ! started ) return;
@@ -134,6 +141,7 @@ public class Game{
 				gameover= true;
 				bird.dead= true;
 			}else if( (bird.x > p.x + p.width) && (bird.x <= p.x + p.width + p.speed) ){
+System.out.println( String.format( "+++ bird.R=%d p.R=%d", bird.x, p.x ) );
 				score++;
 			}
 		}

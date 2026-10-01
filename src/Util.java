@@ -14,6 +14,7 @@ public class Util{
 			return cache.get( path );
 		}
 
+System.out.println( String.format( "[%s]getImage()[%s]", classBase.getName(), path ) );
 		try{
 			image= ImageIO.read( classBase.getResourceAsStream( path ) );
 			if( ! cache.containsKey( path ) ){
